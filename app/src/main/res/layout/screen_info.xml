@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  screen_info.xml v1.3.0.0
+  Добавлено: Wi-Fi RSSI (уровень сигнала), тип зарядки
+  Улучшена структура карточек
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080C14">
+
+    <com.pocotech.hub.AuroraBackground
+        android:id="@+id/bg_anim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="100dp">
+
+            <!-- ШАПКА -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Инфо"
+                    android:textColor="#FFFFFF"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:letterSpacing="-0.02" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Системная информация"
+                android:textColor="#60A0C8FF"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Кнопки действий -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <com.pocotech.hub.HyperCard
+                    android:id="@+id/info_btn_refresh"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginRight="8dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="↻  Обновить" android:textColor="#FFFFFF" android:textSize="13sp" />
+                </com.pocotech.hub.HyperCard>
+
+                <com.pocotech.hub.HyperCard
+                    android:id="@+id/info_btn_copy"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⎘  Скопировать" android:textColor="#FFFFFF" android:textSize="13sp" />
+                </com.pocotech.hub.HyperCard>
+            </LinearLayout>
+
+            <!-- ════ УСТРОЙСТВО ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_inf_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="УСТРОЙСТВО" android:textColor="#506070" android:textSize="10sp" android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="12dp" />
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Модель" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_model" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Android" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_android" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Сборка" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_firmware" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Патч безоп." android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_security_patch" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Аптайм" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_uptime" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Разрешение" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_screen" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ ПРОЦЕССОР ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_inf_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ПРОЦЕССОР" android:textColor="#506070" android:textSize="10sp" android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="12dp" />
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Чипсет" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_cpu" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Ядра" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_cores" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Макс. частота" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_cpu_freq" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="ABI" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_cpu_abi" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="GPU" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_gpu" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Темп. CPU" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_cpu_temp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FF8844" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ БАТАРЕЯ ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_inf_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="БАТАРЕЯ" android:textColor="#506070" android:textSize="10sp" android:textStyle="bold" android:letterSpacing="0.1" />
+                    <TextView android:id="@+id/info_battery" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#44DD88" android:textSize="22sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <com.pocotech.hub.BatteryBarView
+                    android:id="@+id/battery_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Статус" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_charge_status" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Температура" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_temp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FF8844" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Напряжение" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_voltage" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ RAM / STORAGE ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_inf_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ПАМЯТЬ" android:textColor="#506070" android:textSize="10sp" android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="12dp" />
+
+                <!-- RAM -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="4dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="RAM" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/info_ram_pct" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#4A90FF" android:textSize="13sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <com.pocotech.hub.UsageBarView
+                    android:id="@+id/ram_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView android:id="@+id/info_ram" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#556070" android:textSize="11sp" android:layout_marginBottom="14dp" />
+
+                <!-- Storage -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="4dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Хранилище" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/info_storage_pct" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFCC00" android:textSize="13sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <com.pocotech.hub.UsageBarView
+                    android:id="@+id/storage_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView android:id="@+id/info_storage" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#556070" android:textSize="11sp" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ СЕТЬ ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_inf_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="СЕТЬ" android:textColor="#506070" android:textSize="10sp" android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="12dp" />
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Оператор" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_operator" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="IP-адрес" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_ip" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" android:fontFamily="monospace" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Wi-Fi SSID" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_wifi_ssid" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Скорость" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_wifi_speed" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#44DD88" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+                <!-- НОВОЕ: RSSI -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Уровень сигнала" android:textColor="#556070" android:textSize="12sp" />
+                    <TextView android:id="@+id/info_wifi_rssi" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.5" android:textColor="#FFCC00" android:textSize="12sp" android:textStyle="bold" android:gravity="end" />
+                </LinearLayout>
+            </com.pocotech.hub.HyperCard>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

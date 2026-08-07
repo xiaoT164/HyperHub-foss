@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CIT-тест: планшет с галочками (диагностика) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Корпус планшета -->
+    <path
+        android:fillColor="#0F1A2E"
+        android:strokeColor="#4A6A9A"
+        android:strokeWidth="1.6"
+        android:pathData="M4,3 L20,3 Q21,3 21,4 L21,20 Q21,21 20,21 L4,21 Q3,21 3,20 L3,4 Q3,3 4,3 Z" />
+
+    <!-- Строка 1: галочка + линия -->
+    <path android:strokeColor="#40CC70" android:strokeWidth="1.6" android:strokeLineCap="round"
+        android:pathData="M7,8 L8.5,9.5 L11,7" />
+    <path android:strokeColor="#4A6070" android:strokeWidth="1.4" android:strokeLineCap="round"
+        android:pathData="M13,8.3 L17,8.3" />
+
+    <!-- Строка 2: галочка + линия -->
+    <path android:strokeColor="#40CC70" android:strokeWidth="1.6" android:strokeLineCap="round"
+        android:pathData="M7,12 L8.5,13.5 L11,11" />
+    <path android:strokeColor="#4A6070" android:strokeWidth="1.4" android:strokeLineCap="round"
+        android:pathData="M13,12.3 L17,12.3" />
+
+    <!-- Строка 3: в процессе (часики) + линия -->
+    <path android:fillColor="#00000000" android:strokeColor="#FFCC00" android:strokeWidth="1.4"
+        android:pathData="M8,16 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+    <path android:strokeColor="#FFCC00" android:strokeWidth="1.2" android:strokeLineCap="round"
+        android:pathData="M8,15 L8,16 L9,16.5" />
+    <path android:strokeColor="#4A6070" android:strokeWidth="1.4" android:strokeLineCap="round"
+        android:pathData="M13,16.3 L17,16.3" />
+</vector>

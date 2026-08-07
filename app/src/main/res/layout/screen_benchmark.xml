@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080C14"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="100dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Бенчмарк"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HubBench v2: CPU, память, накопитель и GPU. Линейная шкала — разница между устройствами видна как есть."
+            android:textSize="13sp"
+            android:textColor="#8F9BB3"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="20dp" />
+
+        <com.pocotech.hub.HyperCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:id="@+id/bench_device_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Замер занимает около 40 секунд. Закройте игры и фоновые загрузки — так результат будет точнее."
+                android:textColor="#95A4C2"
+                android:textSize="12sp"
+                android:lineSpacingExtra="3dp" />
+        </com.pocotech.hub.HyperCard>
+
+        <TextView
+            android:id="@+id/bench_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Готов к запуску"
+            android:textColor="#60A0C8FF"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <android.widget.ProgressBar
+            android:id="@+id/bench_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:max="100"
+            android:progress="0"
+            android:progressTint="#FFCC00"
+            android:progressBackgroundTint="#1D2A40"
+            android:layout_marginBottom="14dp" />
+
+        <com.pocotech.hub.HyperCard
+            android:id="@+id/bench_start_btn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="18dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/bench_start_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Запустить тест"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFCC00" />
+        </com.pocotech.hub.HyperCard>
+
+        <!-- ════ РЕЗУЛЬТАТ (скрыт до завершения) ════ -->
+        <com.pocotech.hub.HyperCard
+            android:id="@+id/bench_result_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ОБЩИЙ БАЛЛ"
+                android:textColor="#FFCC00"
+                android:textSize="11sp"
+                android:letterSpacing="0.12"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/bench_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="44sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/bench_rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="#44DD88"
+                android:textSize="14sp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/bench_confidence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#7F8FAE"
+                android:textSize="11sp"
+                android:gravity="center" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#1AFFFFFF"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- CPU · одно ядро -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginBottom="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="CPU · одно ядро" android:textColor="#FFFFFF" android:textSize="13sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/bench_cpu1_score" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" />
+                </LinearLayout>
+                <android.widget.ProgressBar android:id="@+id/bench_cpu1_bar" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="match_parent" android:layout_height="5dp" android:layout_marginTop="8dp" android:max="100" android:progress="0" android:progressTint="#58A6FF" android:progressBackgroundTint="#1D2A40" />
+                <TextView android:id="@+id/bench_cpu1_raw" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textColor="#556070" android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- CPU · все ядра -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginBottom="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="CPU · все ядра" android:textColor="#FFFFFF" android:textSize="13sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/bench_cpuM_score" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" />
+                </LinearLayout>
+                <android.widget.ProgressBar android:id="@+id/bench_cpuM_bar" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="match_parent" android:layout_height="5dp" android:layout_marginTop="8dp" android:max="100" android:progress="0" android:progressTint="#58A6FF" android:progressBackgroundTint="#1D2A40" />
+                <TextView android:id="@+id/bench_cpuM_raw" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textColor="#556070" android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- RAM -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginBottom="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Память RAM" android:textColor="#FFFFFF" android:textSize="13sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/bench_ram_score" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" />
+                </LinearLayout>
+                <android.widget.ProgressBar android:id="@+id/bench_ram_bar" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="match_parent" android:layout_height="5dp" android:layout_marginTop="8dp" android:max="100" android:progress="0" android:progressTint="#58A6FF" android:progressBackgroundTint="#1D2A40" />
+                <TextView android:id="@+id/bench_ram_raw" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textColor="#556070" android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Накопитель -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginBottom="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Накопитель" android:textColor="#FFFFFF" android:textSize="13sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/bench_sto_score" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" />
+                </LinearLayout>
+                <android.widget.ProgressBar android:id="@+id/bench_sto_bar" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="match_parent" android:layout_height="5dp" android:layout_marginTop="8dp" android:max="100" android:progress="0" android:progressTint="#58A6FF" android:progressBackgroundTint="#1D2A40" />
+                <TextView android:id="@+id/bench_sto_raw" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textColor="#556070" android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- GPU -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginBottom="4dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="GPU" android:textColor="#FFFFFF" android:textSize="13sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/bench_gpu_score" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" />
+                </LinearLayout>
+                <android.widget.ProgressBar android:id="@+id/bench_gpu_bar" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="match_parent" android:layout_height="5dp" android:layout_marginTop="8dp" android:max="100" android:progress="0" android:progressTint="#58A6FF" android:progressBackgroundTint="#1D2A40" />
+                <TextView android:id="@+id/bench_gpu_raw" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textColor="#556070" android:textSize="11sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#1AFFFFFF"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/bench_caps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#C0CCD8"
+                android:textSize="12sp"
+                android:lineSpacingExtra="4dp" />
+
+            <TextView
+                android:id="@+id/bench_method"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#505C74"
+                android:textSize="10sp"
+                android:lineSpacingExtra="3dp" />
+        </com.pocotech.hub.HyperCard>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Калибровка: бюджетный эталон ≈ 50 000 баллов. Потолка нет — мощные устройства уходят выше линейно."
+            android:textColor="#74839F"
+            android:textSize="12sp"
+            android:lineSpacingExtra="3dp" />
+
+    </LinearLayout>
+</ScrollView>

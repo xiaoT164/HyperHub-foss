@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HyperHub</string>
+    <string name="terminal_activity_title">Terminal</string>
+    <!-- Predict screen -->
+    <string name="predict_os_version">HyperOS 4</string>
+    <string name="predict_badge_desc">Результат предикта обновления</string>
+    <string name="predict_show_list">Список устройств</string>
+    <string name="predict_close_list">Закрыть список устройств</string>
+    <string name="predict_sheet_title">Список устройств</string>
+    <string name="predict_disclaimer">Список собран по политике обновлений Xiaomi и открытым совместимым спискам; спорные модели оставлены в статусе «возможно»</string>
+
+</resources>

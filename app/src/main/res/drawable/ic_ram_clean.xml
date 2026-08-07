@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Очистка RAM: чип памяти с крестиком (chip + clear) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Корпус чипа -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#80C0FF"
+        android:strokeWidth="1.8"
+        android:pathData="M7,7 L17,7 Q17,7 17,7 L17,17 Q17,17 17,17 L7,17 Q7,17 7,17 L7,7 Z" />
+
+    <!-- Внутренний квадрат (ядро чипа) -->
+    <path
+        android:fillColor="#1A3060"
+        android:strokeColor="#4080CC"
+        android:strokeWidth="1.2"
+        android:pathData="M9.5,9.5 L14.5,9.5 L14.5,14.5 L9.5,14.5 Z" />
+
+    <!-- Ножки слева -->
+    <path android:strokeColor="#5090CC" android:strokeWidth="1.6"
+        android:pathData="M4,9 L7,9" />
+    <path android:strokeColor="#5090CC" android:strokeWidth="1.6"
+        android:pathData="M4,12 L7,12" />
+    <path android:strokeColor="#5090CC" android:strokeWidth="1.6"
+        android:pathData="M4,15 L7,15" />
+
+    <!-- Ножки справа -->
+    <path android:strokeColor="#5090CC" android:strokeWidth="1.6"
+        android:pathData="M17,9 L20,9" />
+    <path android:strokeColor="#5090CC" android:strokeWidth="1.6"
+        android:pathData="M17,12 L20,12" />
+    <path android:strokeColor="#5090CC" android:strokeWidth="1.6"
+        android:pathData="M17,15 L20,15" />
+
+    <!-- Крестик «очистить» поверх чипа (правый верхний угол) -->
+    <path
+        android:strokeColor="#FF6060"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M18.5,3.5 L21.5,6.5" />
+    <path
+        android:strokeColor="#FF6060"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M21.5,3.5 L18.5,6.5" />
+</vector>

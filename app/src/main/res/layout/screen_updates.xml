@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  screen_updates.xml v1.3.2.0a
+  Добавлены: карточка v1.3.2.0a (фиксы навигации, улучшенный бенчмарк, UI polish), v1.3.1 перенесена вниз
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080C14">
+
+    <com.pocotech.hub.AuroraBackground
+        android:id="@+id/bg_anim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="100dp">
+
+            <!-- ШАПКА -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Обновления"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="История версий HyperHub"
+                android:textColor="#60A0C8FF"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Кнопка проверки обновлений -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/btn_check_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_updates_channel"
+                    android:tint="#4A90FF"
+                    android:layout_marginRight="12dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Следить за обновлениями"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Telegram @HyperHubRu"
+                        android:textColor="#4A90FF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="1dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="#4A90FF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ ТЕКУЩАЯ ВЕРСИЯ: 1.3.2.0a ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_upd_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="12dp">
+
+                <!-- Заголовок + бейдж "Текущая" -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="v1.3.3.1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Пасхалка, предикт HyperOS 4 и бенчмарк 2.1"
+                            android:textColor="#60A0C8FF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="1dp" />
+                    </LinearLayout>
+
+                    <!-- Бейдж ТЕКУЩАЯ -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  Текущая "
+                        android:textColor="#44DD88"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/badge_green"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1AFFFFFF"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Новое -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="НОВОЕ"
+                    android:textColor="#44DD88"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Добавлена скрытая пасхалка Hyper Egg
+• Бенчмарк усилен: больше измерительных окон, медиана, контроль разброса и оценка доверия
+• Список HyperOS 4 переработан: поддерживаемые, исключённые и спорные модели разделены понятнее"
+                    android:textColor="#C0CCD8"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Исправлено -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ИСПРАВЛЕНО"
+                    android:textColor="#FFCC00"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Убраны противоречия в списках HyperOS 4 и обновлены версии приложения/карточек интерфейса"
+                    android:textColor="#C0CCD8"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ v1.3.0.0 ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_upd_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="12dp">
+
+                <!-- Заголовок + бейдж "Текущая" -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="v1.3.0.0"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Глобальное обновление"
+                            android:textColor="#60A0C8FF"
+                            android:textSize="11sp"
+                            android:layout_marginTop="1dp" />
+                    </LinearLayout>
+
+                    <!-- Бейдж Предыдущая -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Предыдущая"
+                        android:textColor="#556070"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1AFFFFFF"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Новое -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="НОВОЕ"
+                    android:textColor="#44DD88"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Игровой турбо-режим — Game Turbo через ADB\n• MIUI/HyperOS Debug Tools — секретные коды\n• Xiaomi / POCO Labs — бета-функции прошивки\n• Уровень сигнала Wi-Fi (RSSI) в разделе Инфо\n• Тип зарядки (USB / AC / беспроводная)\n• История команд в терминале: кнопки ↑ ↓\n• Быстрые команды — chips над полем ввода"
+                    android:textColor="#808898"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Исправлено -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ИСПРАВЛЕНО"
+                    android:textColor="#FFCC00"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Нажатие на активный таб больше не перезагружает экран\n• Терминал: поле ввода не уезжает под клавиатуру\n• Исправлено наложение экранов при быстром тапе\n• Копирование инфо устройства — улучшенный формат\n• Closesheet: корректная высота при сворачивании\n• Акцентный цвет применяется к навбару сразу"
+                    android:textColor="#808898"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Улучшено -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="УЛУЧШЕНО"
+                    android:textColor="#A0A8FF"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Цветной вывод терминала: команды, успех, ошибки\n• Ограничение размера лога (40k символов) — нет утечек памяти\n• Разделы Главной разбиты на секции с заголовками\n• Версия в подзаголовке главного экрана\n• Предикт: локальный маппинг кодов → маркетинговых имён\n• Сводка устройства с заголовком и разделителем\n• Улучшен UX карточек подключения в терминале"
+                    android:textColor="#808898"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ v1.2.x ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_upd_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="v1.2.x" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Терминал и стекло" android:textColor="#60A0C8FF" android:textSize="11sp" android:layout_marginTop="1dp" />
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Предыдущая" android:textColor="#556070" android:textSize="10sp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1AFFFFFF" android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Добавлен ADB Wireless Терминал\n• Liquid Glass эффект на карточках (HyperCard)\n• GlassSheet — bottom sheet с анимацией\n• Анимированный фон Aurora и FallingPhones\n• Акцентные цвета интерфейса (5 тем)\n• HyperNavBar — парящая навигация"
+                    android:textColor="#808898"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ v1.1.x ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_upd_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="v1.1.x" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Инфо и предикт" android:textColor="#60A0C8FF" android:textSize="11sp" android:layout_marginTop="1dp" />
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Архив" android:textColor="#404858" android:textSize="10sp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1AFFFFFF" android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Экран «Инфо» — CPU, GPU, RAM, батарея, Wi-Fi\n• Экран «Предикт» — список устройств на HyperOS 4\n• BatteryBarView и UsageBarView\n• Поиск по функциям на главном экране\n• Вибрация и настройки приложения"
+                    android:textColor="#505870"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ v1.0.x ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_upd_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="v1.0.x" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Первый релиз" android:textColor="#60A0C8FF" android:textSize="11sp" android:layout_marginTop="1dp" />
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Архив" android:textColor="#404858" android:textSize="10sp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1AFFFFFF" android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Базовая структура: Главная, Настройки\n• Гайды: FPS, анимации, реклама, регион\n• POCO/Redmi/Xiaomi оптимизации\n• SplashView при запуске"
+                    android:textColor="#505870"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp" />
+            </com.pocotech.hub.HyperCard>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

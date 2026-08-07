@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Флагманские анимации: звезда с лучами (sparkle) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Центральная звёздочка -->
+    <path
+        android:fillColor="#A0C8FF"
+        android:pathData="M12,2 L13.2,8.8 L19,7 L14.8,11.8 L20,14 L13.8,13.8 L14,20 L11,14.8 L6,18 L9.2,12.2 L3,11 L9.2,10 L7,4 L11.2,8.2 Z" />
+
+    <!-- Маленькая звёздочка правый верх -->
+    <path
+        android:fillColor="#C0D8FF"
+        android:pathData="M19,3 L19.6,5.4 L22,4 L20.4,6.4 L22,7 L19.8,7.2 L20,9 L18.8,7 L17,8 L18.2,5.8 L16,5 L18.4,4.8 Z" />
+
+    <!-- Маленькая звёздочка левый низ -->
+    <path
+        android:fillColor="#8090CC"
+        android:pathData="M5,16 L5.4,17.6 L7,17 L6,18.4 L7,19 L5.4,19.2 L5.6,21 L4.8,19.4 L3,20 L4,18.4 L2,18 L3.8,17.6 Z" />
+</vector>
