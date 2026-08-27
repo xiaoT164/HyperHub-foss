@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HubBench v2: CPU, память, накопитель и GPU. Линейная шкала — разница между устройствами видна как есть."
+            android:text="HubBench v2.2: CPU, память, накопитель и GPU. Линейная шкала — разница между устройствами видна как есть."
             android:textSize="13sp"
             android:textColor="#8F9BB3"
             android:gravity="center"

@@ -1145,7 +1145,7 @@ public class MainActivity extends Activity {
             @Override public void onProgress(final String stage, final int percent) {
                 runOnUiThread(new Runnable() { @Override public void run() {
                     if (benchScreenView != v) return; // экран уже сменили — не трогаем
-                    if (status != null) status.setText(stage);
+                    if (status != null) status.setText(tr(stage));
                     if (progress != null) progress.setProgress(percent);
                 }});
             }
@@ -1177,7 +1177,7 @@ public class MainActivity extends Activity {
         setRow(card, R.id.bench_cpuM_score, R.id.bench_cpuM_bar, R.id.bench_cpuM_raw,
                 r.cpuMultiScore, r.cpuMultiRaw + " Mops/с · " + r.cpuCores + tr(" ядер"));
         setRow(card, R.id.bench_ram_score, R.id.bench_ram_bar, R.id.bench_ram_raw,
-                r.ramScore, r.ramBandwidth + " " + tr("МиБ/с"));
+                r.ramScore, r.ramBandwidth + " " + tr("МиБ/с") + " · " + r.ramLatencyNs + " " + tr("нс"));
         setRow(card, R.id.bench_sto_score, R.id.bench_sto_bar, R.id.bench_sto_raw,
                 r.storageScore, r.storageRead + " SQLite TPS · " + r.storageWrite + " " + tr("МиБ/с запись"));
 
@@ -1213,13 +1213,13 @@ public class MainActivity extends Activity {
         if (rating != null) rating.setText(r.getRating());
 
         TextView conf = (TextView) card.findViewById(R.id.bench_confidence);
-        if (conf != null) conf.setText(tr("Точность") + ": " + r.getConfidenceLabel());
+        if (conf != null) conf.setText(tr("Точность") + ": " + r.getConfidenceLabel() + " · " + r.benchmarkConfidence + "%");
 
         TextView caps = (TextView) card.findViewById(R.id.bench_caps);
         if (caps != null) caps.setText(r.getCapabilities());
 
         TextView method = (TextView) card.findViewById(R.id.bench_method);
-        if (method != null) method.setText(r.getMethodologySummary() + " · HubBench v2");
+        if (method != null) method.setText(r.getMethodologySummary() + " · HubBench v2.2");
     }
 
     private void setRow(View card, int scoreId, int barId, int rawId, int score, String raw) {
@@ -1308,7 +1308,7 @@ public class MainActivity extends Activity {
 
         ToggleView bgAnimToggle = (ToggleView) v.findViewById(R.id.toggle_bg_anim);
         if (bgAnimToggle != null) {
-            bgAnimToggle.setChecked(prefs.isBgAnim());
+            bgAnimToggle.setChecked(prefs.isBgAnim(), false);
             bgAnimToggle.setOnCheckedChangeListener(new ToggleView.OnCheckedChangeListener() {
                 @Override public void onChanged(boolean checked) {
                     prefs.setBgAnim(checked);
@@ -1320,26 +1320,44 @@ public class MainActivity extends Activity {
                     }
                 }
             });
+            click(v, R.id.card_toggle_bg_anim, new View.OnClickListener() {
+                @Override public void onClick(View vv) {
+                    vibrate();
+                    bgAnimToggle.performClick();
+                }
+            });
         }
 
         ToggleView hapticToggle = (ToggleView) v.findViewById(R.id.toggle_haptic);
         if (hapticToggle != null) {
-            hapticToggle.setChecked(prefs.isHaptic());
+            hapticToggle.setChecked(prefs.isHaptic(), false);
             hapticToggle.setOnCheckedChangeListener(new ToggleView.OnCheckedChangeListener() {
                 @Override public void onChanged(boolean checked) {
                     prefs.setHaptic(checked);
                     if (checked) vibrate();
                 }
             });
+            click(v, R.id.card_toggle_haptic, new View.OnClickListener() {
+                @Override public void onClick(View vv) {
+                    vibrate();
+                    hapticToggle.performClick();
+                }
+            });
         }
 
         ToggleView splashToggle = (ToggleView) v.findViewById(R.id.toggle_splash);
         if (splashToggle != null) {
-            splashToggle.setChecked(prefs.isSplash());
+            splashToggle.setChecked(prefs.isSplash(), false);
             splashToggle.setOnCheckedChangeListener(new ToggleView.OnCheckedChangeListener() {
                 @Override public void onChanged(boolean checked) {
                     prefs.setSplash(checked);
                     if (prefs.isHaptic()) vibrate();
+                }
+            });
+            click(v, R.id.card_toggle_splash, new View.OnClickListener() {
+                @Override public void onClick(View vv) {
+                    vibrate();
+                    splashToggle.performClick();
                 }
             });
         }

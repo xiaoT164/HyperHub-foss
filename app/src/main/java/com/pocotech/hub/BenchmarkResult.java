@@ -1,10 +1,8 @@
 package com.pocotech.hub;
 
-public class BenchmarkResult {
+import java.util.Locale;
 
-    private boolean isEnglish() {
-        return java.util.Locale.getDefault().getLanguage().toLowerCase(java.util.Locale.US).startsWith("en");
-    }
+public class BenchmarkResult {
 
     public int totalScore      = 0;
     public int cpuSingleScore  = 0;
@@ -14,11 +12,12 @@ public class BenchmarkResult {
     public int gpuScore        = 0;
 
     public int   cpuCores      = 0;
-    public long  cpuSingleRaw  = 0; // усл. MiB/s вычислительной нагрузки
-    public long  cpuMultiRaw   = 0; // усл. MiB/s вычислительной нагрузки
+    public long  cpuSingleRaw  = 0; // Mops/s
+    public long  cpuMultiRaw   = 0; // Mops/s
     public long  ramBandwidth  = 0; // MiB/s
+    public long  ramLatencyNs  = 0; // ns
     public long  storageWrite  = 0; // MiB/s
-    public long  storageRead   = 0; // MiB/s
+    public long  storageRead   = 0; // SQLite TPS
 
     public float cpuSingleVariation = 0f;
     public float cpuMultiVariation  = 0f;
@@ -32,11 +31,19 @@ public class BenchmarkResult {
     public float gpuDropPercent = 0f;
     public boolean gpuTested    = false;
 
+    private boolean isEnglish() {
+        return Locale.getDefault().getLanguage().toLowerCase(Locale.US).startsWith("en");
+    }
+
     public void applyGpuResult(int gpuScoreValue, float avgFps, float dropPercent) {
         this.gpuScore = gpuScoreValue;
         this.gpuAvgFps = avgFps;
         this.gpuDropPercent = dropPercent;
         this.gpuTested = true;
+        recomputeTotal();
+    }
+
+    public void recomputeTotal() {
         this.totalScore = cpuSingleScore + cpuMultiScore + ramScore + storageScore + gpuScore;
     }
 
@@ -47,27 +54,29 @@ public class BenchmarkResult {
 
     public float getWorstSectionVariation() {
         return Math.max(
-            Math.max(cpuSingleVariation, cpuMultiVariation),
-            Math.max(ramVariation, storageVariation)
+                Math.max(cpuSingleVariation, cpuMultiVariation),
+                Math.max(ramVariation, storageVariation)
         );
     }
 
     public String getConfidenceLabel() {
         float worst = getWorstSectionVariation();
         if (isEnglish()) {
-            if (benchmarkConfidence >= 90 && worst <= 4.5f) return "Very high";
-            if (benchmarkConfidence >= 78 && worst <= 8.5f) return "Normal";
+            if (benchmarkConfidence >= 92 && worst <= 4.5f) return "Very high";
+            if (benchmarkConfidence >= 82 && worst <= 7.5f) return "High";
+            if (benchmarkConfidence >= 70 && worst <= 11f) return "Normal";
             return "Background-sensitive";
         }
-        if (benchmarkConfidence >= 90 && worst <= 4.5f) return "Очень высокая";
-        if (benchmarkConfidence >= 78 && worst <= 8.5f) return "Нормальная";
+        if (benchmarkConfidence >= 92 && worst <= 4.5f) return "Очень высокая";
+        if (benchmarkConfidence >= 82 && worst <= 7.5f) return "Высокая";
+        if (benchmarkConfidence >= 70 && worst <= 11f) return "Нормальная";
         return "Чувствителен к фону";
     }
 
     public String getMethodologySummary() {
         return isEnglish()
-                ? "6 CPU windows, 7 RAM windows, 5 I/O runs, median with variance control"
-                : "6 окон CPU, 7 окон RAM, 5 прогонов I/O, медиана и контроль разброса";
+                ? "6 CPU windows, 4 multi-core windows, 7 RAM windows, 5 I/O runs, median + variance"
+                : "6 окон CPU, 4 окна multi-core, 7 окон RAM, 5 прогонов I/O, медиана + разброс";
     }
 
     public String getGpuStability() {
@@ -84,19 +93,18 @@ public class BenchmarkResult {
         return "Сильная просадка под пиком";
     }
 
-    
     public String getRating() {
         if (isEnglish()) {
             if (totalScore >= 380000) return "Flagship / near-flagship";
-            if (totalScore >= 220000)  return "Very powerful";
-            if (totalScore >= 120000)  return "Strong mid-range";
-            if (totalScore >= 60000)  return "Budget / basic";
+            if (totalScore >= 220000) return "Very powerful";
+            if (totalScore >= 120000) return "Strong mid-range";
+            if (totalScore >= 60000) return "Budget / basic";
             return "Entry level";
         }
         if (totalScore >= 380000) return "Флагман / почти флагман";
-        if (totalScore >= 220000)  return "Очень мощный";
-        if (totalScore >= 120000)  return "Крепкий средний класс";
-        if (totalScore >= 60000)  return "Бюджетный / базовый";
+        if (totalScore >= 220000) return "Очень мощный";
+        if (totalScore >= 120000) return "Крепкий средний класс";
+        if (totalScore >= 60000) return "Бюджетный / базовый";
         return "Начальный уровень";
     }
 
@@ -121,9 +129,7 @@ public class BenchmarkResult {
             return "Игры на средне-высоких настройках — нормально\nМонтаж 1080p — без боли\nПовседневная многозадачность — хорошая";
         } else if (totalScore >= 22000) {
             return "Соцсети, браузер, мессенджеры — отлично\nИгры — в основном лёгкие или на низких настройках\nПод длительной нагрузкой возможны заметные ограничения";
-        } else {
-            return "Базовые задачи — нормально\nИгры — только простые\nЖелательно меньше фоновых процессов и тяжёлых приложений";
         }
+        return "Базовые задачи — нормально\nИгры — только простые\nЖелательно меньше фоновых процессов и тяжёлых приложений";
     }
 }
-

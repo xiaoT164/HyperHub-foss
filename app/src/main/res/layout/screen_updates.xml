@@ -124,7 +124,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="v1.3.3.1"
+                            android:text="v1.3.3.2"
                             android:textColor="#FFFFFF"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -132,7 +132,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Пасхалка, предикт HyperOS 4 и бенчмарк 2.1"
+                            android:text="Пасхалка, фиксы переключателей и HubBench 2.2"
                             android:textColor="#60A0C8FF"
                             android:textSize="11sp"
                             android:layout_marginTop="1dp" />
@@ -173,9 +173,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="• Добавлена скрытая пасхалка Hyper Egg
-• Бенчмарк усилен: больше измерительных окон, медиана, контроль разброса и оценка доверия
-• Список HyperOS 4 переработан: поддерживаемые, исключённые и спорные модели разделены понятнее"
+                    android:text="• Переключатели теперь корректно двигаются, не застревают после открытия экрана и переключаются по нажатию на всю строку
+• HubBench 2.2: реальные серии замеров, медиана, разброс, latency RAM и процент доверия
+• Подчищены мелкие UX-проблемы и обновлены версии приложения/карточек интерфейса"
                     android:textColor="#C0CCD8"
                     android:textSize="12sp"
                     android:lineSpacingExtra="4dp"
@@ -195,7 +195,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="• Убраны противоречия в списках HyperOS 4 и обновлены версии приложения/карточек интерфейса"
+                    android:text="• Исправлена начальная позиция ползунков и расширена зона нажатия для переключателей
+• Статусы бенчмарка теперь корректно локализуются, а RAM-секция показывает ещё и задержку доступа"
                     android:textColor="#C0CCD8"
                     android:textSize="12sp"
                     android:lineSpacingExtra="4dp" />
