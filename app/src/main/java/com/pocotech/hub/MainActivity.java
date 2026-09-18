@@ -40,7 +40,9 @@ import java.util.List;
 import java.util.Locale;
 import com.pocotech.hub.BuildConfig;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements HubHost {
+
+    private HubStore store;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -75,14 +77,22 @@ public class MainActivity extends Activity {
             bottomNav.setGlassEnabled(false);
         }
 
+        store = new HubStore(this);
+        store.touchDaily();
+        ReminderReceiver.applyFromPrefs(this);
+
         int startScreen = (savedInstanceState != null)
                 ? savedInstanceState.getInt(KEY_CURRENT_SCREEN, 0) : 0;
+        if (!prefs.isOnboardingDone() && startScreen == 0) {
+            startScreen = 8;
+        }
         showScreenInternal(startScreen, startScreen, false);
         setNavHighlight(startScreen);
 
         final int[] navIds = {
             R.id.nav_home, R.id.nav_updates, R.id.nav_info,
-            R.id.nav_benchmark, R.id.nav_predict, R.id.nav_settings
+            R.id.nav_benchmark, R.id.nav_predict, R.id.nav_settings,
+            R.id.nav_profiles, R.id.nav_achievements
         };
         for (int i = 0; i < navIds.length; i++) {
             final int idx = i;
@@ -175,6 +185,9 @@ public class MainActivity extends Activity {
             case 3:  view = getLayoutInflater().inflate(R.layout.screen_benchmark, fragmentContainer, false); setupBenchmarkScreen(view); break;
             case 4:  view = getLayoutInflater().inflate(R.layout.screen_predict, fragmentContainer, false); setupPredictScreen(view); break;
             case 5:  view = getLayoutInflater().inflate(R.layout.screen_settings, fragmentContainer, false); setupSettingsScreen(view); break;
+            case 6:  view = ProfilesScreen.build(this, this); break;
+            case 7:  view = AchievementsScreen.build(this, this); break;
+            case 8:  view = OnboardingScreen.build(this, this); break;
             default: view = getLayoutInflater().inflate(R.layout.screen_home, fragmentContainer, false); setupHomeButtons(view); break;
         }
 
@@ -529,6 +542,105 @@ public class MainActivity extends Activity {
         });
 
         bindHomeSearch(v);
+        bindFavoritesLongPress(v);
+
+        TextView ver = (TextView) v.findViewById(R.id.home_subtitle);
+        if (ver != null) {
+            ver.setText("v" + BuildConfig.VERSION_NAME + (LocaleHelper.isEnglish(this)
+                    ? " · HyperOS toolkit" : " · Утилиты HyperOS"));
+        }
+
+        HomeExtras.bind(this, v, this);
+    }
+
+    @Override
+    public void runFeature(String key) {
+        if (key == null) return;
+        store.pushRecent(key);
+        store.addXp(HubStore.XP_ACTION);
+
+        final int cardId = Features.byKey(key) == null ? 0 : Features.byKey(key).cardId;
+        final View home = currentHomeView();
+        if (currentScreen != 0 || home == null) {
+            showScreen(0);
+            setNavHighlight(0);
+            fragmentContainer.post(new Runnable() {
+                @Override public void run() {
+                    View hv = currentHomeView();
+                    if (hv != null && cardId != 0) {
+                        View card = hv.findViewById(cardId);
+                        if (card != null) card.performClick();
+                    }
+                }
+            });
+        } else {
+            View card = cardId == 0 ? null : home.findViewById(cardId);
+            if (card != null && card.getVisibility() == View.VISIBLE) {
+                card.performClick();
+            } else {
+                new GlassSheet(this)
+                        .title(Features.title(key, LocaleHelper.isEnglish(this)))
+                        .body(LocaleHelper.isEnglish(this)
+                                ? "Clear the search field to open this card, or find it in its section."
+                                : "Очистите поле поиска, чтобы открыть карточку, или найдите её в разделе.")
+                        .show();
+            }
+        }
+    }
+
+    @Override
+    public void openScreen(int index) {
+        if (index == 8) prefs.setOnboardingDone(false);
+        showScreen(index);
+        setNavHighlight(index);
+    }
+
+    @Override
+    public void showSheet(String title, String body) {
+        new GlassSheet(this).title(title).body(body).show();
+    }
+
+    @Override
+    public void toast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void refreshCurrentScreen() {
+        int idx = currentScreen;
+        showScreenInternal(idx, idx, false);
+        setNavHighlight(idx);
+    }
+
+    @Override
+    public AppSettings prefs() { return prefs; }
+
+    @Override
+    public HubStore store() { return store; }
+
+    private View currentHomeView() {
+        return fragmentContainer != null && fragmentContainer.getChildCount() > 0
+                ? fragmentContainer.getChildAt(0) : null;
+    }
+
+    private void bindFavoritesLongPress(View v) {
+        for (final Features.F f : Features.ALL) {
+            View card = v.findViewById(f.cardId);
+            if (card == null) continue;
+            card.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override public boolean onLongClick(View view) {
+                    boolean added = store.toggleFavorite(f.key);
+                    store.addXp(HubStore.XP_FAVORITE);
+                    vibrate();
+                    boolean en = LocaleHelper.isEnglish(MainActivity.this);
+                    String name = Features.title(f.key, en);
+                    toast(added ? (en ? "Added to favorites: " : "В избранное: ") + name
+                                : (en ? "Removed from favorites: " : "Убрано из избранного: ") + name);
+                    HomeExtras.refreshStats(MainActivity.this, currentHomeView(), MainActivity.this);
+                    return true;
+                }
+            });
+        }
     }
 
     private void bindHomeSearch(final View v) {
@@ -991,6 +1103,17 @@ public class MainActivity extends Activity {
             predictSheetCloseCallback.run();
             return;
         }
+        if (currentScreen == 8) {
+            prefs.setOnboardingDone(true);
+            showScreen(0);
+            setNavHighlight(0);
+            return;
+        }
+        if (currentScreen == 6 || currentScreen == 7) {
+            showScreen(0);
+            setNavHighlight(0);
+            return;
+        }
         super.onBackPressed();
     }
 
@@ -1114,6 +1237,8 @@ public class MainActivity extends Activity {
             deviceLine.setText(getCurrentDeviceBenchmarkName() + "  •  " + getCurrentCpuBrief());
         }
 
+        renderBenchmarkTrend(v);
+
         if (startBtn != null) {
             startBtn.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View view) {
@@ -1162,6 +1287,8 @@ public class MainActivity extends Activity {
                     }
                     if (status != null) status.setText(tr("Готово"));
                     renderHubBenchmarkResult(v, result);
+                    saveBenchmarkToHistory(result);
+                    renderBenchmarkTrend(v);
                 }});
             }
         });
@@ -1220,6 +1347,59 @@ public class MainActivity extends Activity {
 
         TextView method = (TextView) card.findViewById(R.id.bench_method);
         if (method != null) method.setText(r.getMethodologySummary() + " · HubBench v2.2");
+    }
+
+    private void saveBenchmarkToHistory(BenchmarkResult r) {
+        HubStore.BenchRecord rec = new HubStore.BenchRecord();
+        rec.time = System.currentTimeMillis();
+        rec.total = r.totalScore;
+        rec.cpuSingle = r.cpuSingleScore;
+        rec.cpuMulti = r.cpuMultiScore;
+        rec.ram = r.ramScore;
+        rec.storage = r.storageScore;
+        rec.gpu = r.gpuScore;
+        rec.rating = r.getRating();
+        store.addBenchmark(rec);
+        store.addXp(HubStore.XP_BENCHMARK);
+    }
+
+    private void renderBenchmarkTrend(View v) {
+        BenchTrendView chart = (BenchTrendView) v.findViewById(R.id.bench_trend);
+        if (chart != null) {
+            chart.setAccent(prefs.getAccentColor() != 0 ? prefs.getAccentColor() : 0xFF58A6FF);
+            chart.setData(store.benchHistory());
+        }
+
+        boolean en = LocaleHelper.isEnglish(this);
+
+        TextView best = (TextView) v.findViewById(R.id.bench_best);
+        if (best != null) {
+            HubStore.BenchRecord b = store.benchBest();
+            best.setText(b == null
+                    ? (en ? "No saved runs yet" : "Сохранённых прогонов пока нет")
+                    : (en ? "Best: " : "Лучший результат: ") + fmtScore(b.total));
+        }
+
+        TextView delta = (TextView) v.findViewById(R.id.bench_delta);
+        if (delta != null) {
+            java.util.List<HubStore.BenchRecord> hist = store.benchHistory();
+            if (hist.size() >= 2) {
+                int d = hist.get(0).total - hist.get(1).total;
+                String sign = d > 0 ? "+" : (d < 0 ? "−" : "±");
+                delta.setText((en ? "vs previous run: " : "к прошлому прогону: ")
+                        + sign + fmtScore(Math.abs(d)));
+                delta.setTextColor(d >= 0 ? 0xFF44DD88 : 0xFFFF7043);
+            } else {
+                delta.setText(en ? "Run the test again to see dynamics"
+                        : "Запустите тест ещё раз, чтобы увидеть динамику");
+                delta.setTextColor(0xFF6A7A8C);
+            }
+        }
+
+        TextView count = (TextView) v.findViewById(R.id.bench_history_count);
+        if (count != null) {
+            count.setText((en ? "Saved runs: " : "Прогонов в истории: ") + store.benchHistory().size());
+        }
     }
 
     private void setRow(View card, int scoreId, int barId, int rawId, int score, String raw) {
@@ -1390,6 +1570,7 @@ public class MainActivity extends Activity {
             }
         });
 
+        SettingsExtras.bind(this, v, this);
         UiLocalizer.localizeViewTree(v, this);
     }
 
@@ -1751,7 +1932,8 @@ public class MainActivity extends Activity {
         if (tv != null) tv.setText(text);
     }
 
-    private void vibrate() {
+    @Override
+    public void vibrate() {
         if (!prefs.isHaptic()) return;
         Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (vib != null && vib.hasVibrator()) {

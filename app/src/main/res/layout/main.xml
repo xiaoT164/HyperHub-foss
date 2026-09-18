@@ -244,7 +244,83 @@
                 android:layout_marginTop="4dp"
                 android:text="Настройки"
                 android:textColor="#FF8A8A8F"
-                android:textSize="10sp" />
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <!-- ПРОФИЛИ (2.0.0) -->
+        <LinearLayout
+            android:id="@+id/nav_profiles"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+            <View
+                android:id="@+id/nav_profiles_indicator"
+                android:layout_width="18dp"
+                android:layout_height="4dp"
+                android:layout_marginBottom="6dp"
+                android:alpha="0"
+                android:background="@drawable/nav_indicator" />
+
+            <ImageView
+                android:id="@+id/nav_profiles_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@android:drawable/ic_menu_manage"
+                android:tint="#FF8A8A8F" />
+
+            <TextView
+                android:id="@+id/nav_profiles_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Профили"
+                android:textColor="#FF8A8A8F"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <!-- НАГРАДЫ (2.0.0) -->
+        <LinearLayout
+            android:id="@+id/nav_achievements"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+            <View
+                android:id="@+id/nav_achievements_indicator"
+                android:layout_width="18dp"
+                android:layout_height="4dp"
+                android:layout_marginBottom="6dp"
+                android:alpha="0"
+                android:background="@drawable/nav_indicator" />
+
+            <ImageView
+                android:id="@+id/nav_achievements_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@android:drawable/btn_star_big_off"
+                android:tint="#FF8A8A8F" />
+
+            <TextView
+                android:id="@+id/nav_achievements_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Награды"
+                android:textColor="#FF8A8A8F"
+                android:textSize="9sp" />
         </LinearLayout>
 
     </com.pocotech.hub.HyperNavBar>

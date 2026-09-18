@@ -103,6 +103,56 @@
         </com.pocotech.hub.HyperCard>
 
         <!-- ════ РЕЗУЛЬТАТ (скрыт до завершения) ════ -->
+        <!-- ════ ИСТОРИЯ И ДИНАМИКА (2.0.0) ════ -->
+        <com.pocotech.hub.HyperCard
+            android:id="@+id/bench_history_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ИСТОРИЯ И ДИНАМИКА"
+                android:textColor="#8FB6FF"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <com.pocotech.hub.BenchTrendView
+                android:id="@+id/bench_trend"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/bench_best"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bench_delta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="#6A7A8C"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/bench_history_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="#505C74"
+                android:textSize="10sp" />
+        </com.pocotech.hub.HyperCard>
+
         <com.pocotech.hub.HyperCard
             android:id="@+id/bench_result_card"
             android:layout_width="match_parent"

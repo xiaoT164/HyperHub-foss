@@ -54,7 +54,7 @@
                 android:id="@+id/about_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Версия 1.3.3.2"
+                android:text="Версия 2.0.0"
                 android:textColor="#505060"
                 android:textSize="12sp"
                 android:gravity="center"
@@ -360,6 +360,189 @@
                     android:id="@+id/toggle_splash"
                     android:layout_width="52dp"
                     android:layout_height="30dp" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ ВНЕШНИЙ ВИД И НАПОМИНАНИЯ (2.0.0) ════ -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ТЕМА И НАПОМИНАНИЯ"
+                android:textColor="#506070"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="4dp" />
+
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎨"
+                    android:textSize="18sp"
+                    android:layout_marginRight="12dp" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Акцентная тема" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/theme_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Океан" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#8090D0" android:textSize="20sp" android:textStyle="bold" />
+            </com.pocotech.hub.HyperCard>
+
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_reminder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔔"
+                    android:textSize="18sp"
+                    android:layout_marginRight="12dp" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ежедневное напоминание" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Что стоит проверить сегодня" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <com.pocotech.hub.ToggleView
+                    android:id="@+id/toggle_reminder"
+                    android:layout_width="52dp"
+                    android:layout_height="30dp" />
+            </com.pocotech.hub.HyperCard>
+
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_reminder_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🕘"
+                    android:textSize="18sp"
+                    android:layout_marginRight="12dp" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Время напоминания" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/reminder_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Выключено" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#8090D0" android:textSize="20sp" android:textStyle="bold" />
+            </com.pocotech.hub.HyperCard>
+
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_onboarding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ℹ"
+                    android:textSize="18sp"
+                    android:layout_marginRight="12dp" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Что нового в 2.0" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Пройдите интро заново" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#8090D0" android:textSize="20sp" android:textStyle="bold" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ ДАННЫЕ ════ -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ДАННЫЕ"
+                android:textColor="#506070"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="4dp" />
+
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_backup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="💾"
+                    android:textSize="18sp"
+                    android:layout_marginRight="12dp" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Резервная копия" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Экспорт и импорт в JSON" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#8090D0" android:textSize="20sp" android:textStyle="bold" />
+            </com.pocotech.hub.HyperCard>
+
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/card_reset_stats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="↺"
+                    android:textSize="18sp"
+                    android:layout_marginRight="12dp" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Сбросить статистику" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="XP, серия, достижения, история тестов" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#8090D0" android:textSize="20sp" android:textStyle="bold" />
             </com.pocotech.hub.HyperCard>
 
             <!-- ════ РАЗРАБОТЧИК ════ -->

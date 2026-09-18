@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  screen_home.xml v1.3.0.0
-  Новые кнопки: Game Mode, MIUI Debug, Xiaomi Labs
-  Улучшенные разделители секций
+  screen_home.xml — HyperHub 2.0.0
+  Новое: панель прогресса (серия/уровень/достижения), индекс здоровья (RingProgressView),
+  избранное, недавние, кнопка живого монитора.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -44,14 +44,128 @@
                 android:layout_marginBottom="2dp" />
 
             <TextView
+                android:id="@+id/home_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="v1.3.3.2 · Утилиты HyperOS"
+                android:text="v2.0.0 · Утилиты HyperOS"
                 android:textColor="#60A0C8FF"
                 android:textSize="11sp"
                 android:gravity="center"
                 android:letterSpacing="0.06"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="14dp" />
+
+            <!-- ════ ПРОГРЕСС ════ -->
+            <LinearLayout
+                android:id="@+id/home_stats_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:id="@+id/home_level_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Уровень 1 · Новичок · 0/100 XP"
+                android:textColor="#6A7A8C"
+                android:textSize="11sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- ════ ЗДОРОВЬЕ УСТРОЙСТВА ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/home_health_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="14dp">
+
+                <com.pocotech.hub.RingProgressView
+                    android:id="@+id/health_ring"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:layout_marginRight="14dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/health_grade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="—"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/health_summary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#8FB6FF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="2dp" />
+
+                    <LinearLayout
+                        android:id="@+id/health_advice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ ЖИВОЙ МОНИТОР ════ -->
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/btn_monitor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📈"
+                    android:textSize="20sp"
+                    android:layout_marginRight="12dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Живой монитор" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="RAM, диск, температура — в реальном времени" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="1dp" />
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NEW" android:textColor="#44DD88" android:textSize="9sp" android:textStyle="bold" android:layout_marginRight="8dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
+            </com.pocotech.hub.HyperCard>
+
+            <!-- ════ ИЗБРАННОЕ / НЕДАВНИЕ ════ -->
+            <LinearLayout
+                android:id="@+id/home_favorites_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:id="@+id/home_recents_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="12dp" />
 
             <!-- Поиск -->
             <EditText
@@ -99,37 +213,15 @@
                     android:layout_marginRight="12dp"
                     android:layout_gravity="center_vertical" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Поддержать HyperHub"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="DonationAlerts — спасибо!"
-                        android:textColor="#80FF8888"
-                        android:textSize="11sp"
-                        android:layout_marginTop="1dp" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Поддержать HyperHub" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DonationAlerts — спасибо!" android:textColor="#80FF8888" android:textSize="11sp" android:layout_marginTop="1dp" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="›"
-                    android:textColor="#FF6688"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#FF6688" android:textSize="22sp" android:textStyle="bold" />
             </com.pocotech.hub.HyperCard>
 
-            <!-- ════ РАЗДЕЛ: ОПТИМИЗАЦИЯ ════ -->
+            <!-- ════ ОПТИМИЗАЦИЯ ════ -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -249,7 +341,6 @@
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
             </com.pocotech.hub.HyperCard>
 
-            <!-- НОВОЕ: Игровой режим -->
             <com.pocotech.hub.HyperCard
                 android:id="@+id/btn_game_mode"
                 android:layout_width="match_parent"
@@ -265,11 +356,10 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Игровой турбо-режим" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Game Turbo — CPU/GPU приоритет" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="1dp" />
                 </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NEW" android:textColor="#44DD88" android:textSize="9sp" android:textStyle="bold" android:layout_marginRight="8dp" />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
             </com.pocotech.hub.HyperCard>
 
-            <!-- ════ РАЗДЕЛ: СКРЫТЫЕ НАСТРОЙКИ ════ -->
+            <!-- ════ СКРЫТЫЕ НАСТРОЙКИ ════ -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -371,9 +461,26 @@
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
             </com.pocotech.hub.HyperCard>
 
-            <!-- НОВОЕ: MIUI Debug -->
             <com.pocotech.hub.HyperCard
                 android:id="@+id/btn_miui_debug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_miui_debug" android:layout_marginRight="12dp" android:layout_gravity="center_vertical" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MIUI/HyperOS Debug Tools" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Секретные коды инженерных меню" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="1dp" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
+            </com.pocotech.hub.HyperCard>
+
+            <com.pocotech.hub.HyperCard
+                android:id="@+id/btn_xiaomi_labs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -382,16 +489,15 @@
                 android:layout_marginBottom="20dp"
                 android:clickable="true"
                 android:focusable="true">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_miui_debug" android:layout_marginRight="12dp" android:layout_gravity="center_vertical" />
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_xiaomi_labs" android:layout_marginRight="12dp" android:layout_gravity="center_vertical" />
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MIUI/HyperOS Debug Tools" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Секретные коды инженерных меню" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="1dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Xiaomi / POCO Labs" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Скрытые бета-функции системы" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="1dp" />
                 </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NEW" android:textColor="#44DD88" android:textSize="9sp" android:textStyle="bold" android:layout_marginRight="8dp" />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
             </com.pocotech.hub.HyperCard>
 
-            <!-- ════ РАЗДЕЛ: ГАЙДЫ ════ -->
+            <!-- ════ ГАЙДЫ ════ -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -482,7 +588,7 @@
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="20dp"
                 android:clickable="true"
                 android:focusable="true">
                 <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_font_hack" android:layout_marginRight="12dp" android:layout_gravity="center_vertical" />
@@ -493,27 +599,7 @@
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
             </com.pocotech.hub.HyperCard>
 
-            <!-- НОВОЕ: Xiaomi Labs -->
-            <com.pocotech.hub.HyperCard
-                android:id="@+id/btn_xiaomi_labs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="20dp"
-                android:clickable="true"
-                android:focusable="true">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_xiaomi_labs" android:layout_marginRight="12dp" android:layout_gravity="center_vertical" />
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Xiaomi / POCO Labs" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Скрытые бета-функции системы" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="1dp" />
-                </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NEW" android:textColor="#44DD88" android:textSize="9sp" android:textStyle="bold" android:layout_marginRight="8dp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
-            </com.pocotech.hub.HyperCard>
-
-            <!-- ════ РАЗДЕЛ: СООБЩЕСТВО ════ -->
+            <!-- ════ СООБЩЕСТВО ════ -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -537,10 +623,10 @@
                 android:focusable="true">
                 <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_telegram" android:layout_marginRight="12dp" android:layout_gravity="center_vertical" />
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Telegram канал" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Telegram-канал" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@HyperHubRu — новости и советы" android:textColor="#556070" android:textSize="11sp" android:layout_marginTop="1dp" />
                 </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#4A90FF" android:textSize="20sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#556070" android:textSize="20sp" />
             </com.pocotech.hub.HyperCard>
 
         </LinearLayout>
