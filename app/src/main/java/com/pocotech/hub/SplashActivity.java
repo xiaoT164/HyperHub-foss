@@ -9,7 +9,7 @@ import android.view.View;
 
 public class SplashActivity extends Activity {
 
-    private static final long SPLASH_DURATION = 2800L;
+    private static final long SPLASH_DURATION = 1600L;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -19,21 +19,16 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         AppSettings prefs = new AppSettings(this);
-
-        // Skip splash if disabled in settings
         if (!prefs.isSplash()) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
             return;
         }
-
         getWindow().getDecorView().setSystemUiVisibility(
-            View.SYSTEM_UI_FLAG_FULLSCREEN |
-            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-            View.SYSTEM_UI_FLAG_IMMERSIVE
-        );
+                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         setContentView(new SplashView(this));
 

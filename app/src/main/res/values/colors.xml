@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="hh_bg">#FF080C14</color>
+    <color name="hh_panel">#CC111827</color>
+    <color name="hh_text_primary">#FFFFFFFF</color>
+    <color name="hh_text_secondary">#FF9AA6B8</color>
+    <color name="hh_accent">#FF4F46E5</color>
+    <color name="hh_divider">#1FFFFFFF</color>
+    <color name="hh_status_ok">#FF22C55E</color>
+    <color name="hh_status_warn">#FFF59E0B</color>
+    <color name="hh_status_err">#FFEF4444</color>
+</resources>

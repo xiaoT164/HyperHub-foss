@@ -52,9 +52,9 @@ public final class UiLocalizer {
         put("Резервная копия", "Backup");
         put("Экспорт и импорт в JSON", "Export and import as JSON");
         put("Сбросить статистику", "Reset progress");
-        put("XP, серия, достижения, история тестов", "XP, streak, achievements, benchmark history");
+        put("Журнал оптимизаций и история тестов", "Optimisation journal and benchmark history");
         put("Сбросить прогресс?", "Reset progress?");
-        put("XP, серия дней, достижения и история бенчмарков будут очищены. Инструменты и избранное останутся.", "XP, streak, achievements and benchmark history will be cleared. Tools and favorites stay.");
+        put("Журнал и история бенчмарков будут очищены. Инструменты и избранное останутся.", "Journal and benchmark history will be cleared. Tools and favorites stay.");
         put("Сбросить", "Reset");
         put("Статистика сброшена", "Stats reset");
         put("Резервная копия и восстановление", "Backup and restore");
@@ -80,8 +80,8 @@ public final class UiLocalizer {
         put("Сохранённых прогонов пока нет", "No saved runs yet");
         put("к прошлому прогону: ", "vs previous run: ");
         put("Запустите тест ещё раз, чтобы увидеть динамику", "Run the test again to see dynamics");
-        put("Достижения", "Achievements");
-        put("Прогресс хранится локально на устройстве", "Progress is stored locally on your device");
+        put("Журнал", "Journal");
+        put("Журнал хранится локально на устройстве", "The journal is stored locally on your device");
         put("ПОЛЬЗОВАТЕЛЬСКИЕ ПРОФИЛИ", "CUSTOM PROFILES");
         put("Один тап запускает сценарий: приложение показывает все шаги", "One tap applies a scenario and shows every step");
         put("Применить", "Apply");
@@ -101,8 +101,8 @@ public final class UiLocalizer {
         put("Приватность", "Privacy");
         put("Добро пожаловать в HyperHub", "Welcome to HyperHub");
         put("Здоровье устройства", "Device health");
-        put("Прогресс и цели", "Progress and goals");
-        put("Профили и ежедневная проверка", "Profiles and daily check");
+        put("Журнал оптимизаций", "Optimisation journal");
+        put("Профили и автоматизация", "Profiles and automation");
         put("Далее", "Next");
         put("Назад", "Back");
         put("Пропустить", "Skip");

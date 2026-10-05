@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
-	</style>
+    <style name="Theme.HyperHub" parent="android:Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@color/hh_bg</item>
+        <item name="android:colorBackground">@color/hh_bg</item>
+        <item name="android:statusBarColor">@color/hh_bg</item>
+        <item name="android:navigationBarColor">@color/hh_bg</item>
+        <item name="android:textColorPrimary">@color/hh_text_primary</item>
+        <item name="android:textColorSecondary">@color/hh_text_secondary</item>
+    </style>
+    <style name="Theme.HyperHub.Splash" parent="Theme.HyperHub">
+        <item name="android:windowBackground">@color/hh_bg</item>
+    </style>
 </resources>

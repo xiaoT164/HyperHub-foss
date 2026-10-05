@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="home_scroll" type="id" />
+    <item name="fragment_container" type="id" />
+    <item name="bottom_navigation" type="id" />
+    <item name="top_divider" type="id" />
+    <item name="nav_overlay" type="id" />
+    <item name="root_container" type="id" />
+</resources>

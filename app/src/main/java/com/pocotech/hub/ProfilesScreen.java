@@ -259,7 +259,6 @@ public final class ProfilesScreen {
             @Override public void onClick(View v) {
                 host.vibrate();
                 host.store().countProfileUse();
-                host.store().addXp(HubStore.XP_PROFILE);
                 showSteps(act, host, en ? p.nameEn : p.nameRu, p.keys);
                 host.refreshCurrentScreen();
             }

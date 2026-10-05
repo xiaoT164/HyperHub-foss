@@ -71,18 +71,18 @@ public final class OnboardingScreen {
         secondary.setLayoutParams(sp);
         root.addView(secondary);
 
-        final String[] icons = {"🚀", "🩺", "🎯", "⚡"};
+        final String[] icons = {"🚀", "🩺", "📓", "⚡"};
         final String[] ru = {
                 "HyperHub 2.0 — центр управления HyperOS.\n\nВсе твики, диагностика и бенчмарк собраны в одном месте: 21 инструмент, поиск, избранное и профили. Команды для ADB копируются в один тап.",
                 "Каждый день — новая цифра.\n\nИндекс здоровья оценивает RAM, накопитель, температуру и батарею, показывает рекомендации и графики в реальном времени. Открывайте приложение, чтобы видеть, что изменилось.",
-                "Возвращаться становится интересно.\n\nСерия дней, XP и уровень, 12 достижений и история бенчмарков с графиком и разницей к прошлому прогону. Прогресс хранится локально.",
-                "Профили делают работу за вас.\n\n«Игровой», «Батарея», «Чистый интерфейс», «Диагностика», «Приватность» — готовые сценарии, а также свои наборы. Плюс ежедневное напоминание о проверке устройства."
+                "Журнал оптимизаций вместо игровых механик.\n\nИстория применённых команд и прогонов бенчмарка с графиком и разницей к прошлому прогону. Все записи хранятся локально и экспортируются в JSON.",
+                "Профили делают работу за вас.\n\n«Игровой», «Батарея», «Чистый интерфейс», «Диагностика», «Приватность» — готовые сценарии, а также свои наборы. Любую команду можно сохранить в один тап."
         };
         final String[] enT = {
                 "HyperHub 2.0 — your HyperOS control center.\n\nAll tweaks, diagnostics and the benchmark live in one place: 21 tools, search, favorites and profiles. ADB commands copy in a single tap.",
                 "A new number every day.\n\nThe health index scores RAM, storage, temperature and battery, with recommendations and real-time charts. Open the app to see what changed.",
-                "Coming back becomes rewarding.\n\nStreaks, XP and level, 12 achievements, plus benchmark history with a chart and the delta versus the previous run. Progress is stored locally.",
-                "Profiles do the work for you.\n\nGaming, Battery, Clean UI, Diagnostics, Privacy — ready scenarios plus your own sets. A daily reminder keeps the device checked."
+                "An optimisation journal instead of game-like mechanics.\n\nA chronological log of applied commands and benchmark runs, with a chart and the delta versus the previous run. Everything is stored locally and can be exported as JSON.",
+                "Profiles do the work for you.\n\nGaming, Battery, Clean UI, Diagnostics, Privacy — ready scenarios plus your own sets. Save any command in a single tap."
         };
 
         final Runnable render = new Runnable() {
