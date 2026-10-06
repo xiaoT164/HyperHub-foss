@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  activity_terminal.xml — экран ADB-терминала.
+  Все id, на которые ссылается TerminalActivity (term_*), присутствуют.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,42 +10,223 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Статус соединения -->
     <TextView
-        android:id="@+id/tvStatus"
+        android:id="@+id/term_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Terminal (offline)"
+        android:text="@string/app_name"
         android:textColor="@color/hh_text_secondary"
         android:textSize="13sp" />
 
+    <!-- Верхние кнопки: помощь и настройки разработчика -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+
+        <Button
+            android:id="@+id/term_btn_help"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="?"
+            android:textColor="@color/hh_text_primary"
+            android:background="@drawable/input_bg" />
+
+        <Button
+            android:id="@+id/term_btn_dev_settings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginStart="6dp"
+            android:textAllCaps="false"
+            android:textColor="@color/hh_text_primary"
+            android:background="@drawable/input_bg" />
+    </LinearLayout>
+
+    <!-- Вывод терминала -->
     <ScrollView
-        android:id="@+id/scrollOutput"
+        android:id="@+id/term_output_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="8dp"
         android:background="#CC111827">
+
         <TextView
-            android:id="@+id/tvOutput"
+            android:id="@+id/term_output"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:textColor="@color/hh_text_primary"
             android:textSize="12sp"
             android:fontFamily="monospace"
-            android:text="Terminal is disabled in FOSS build. Use Termux or ADB Shell." />
+            android:textIsSelectable="true" />
     </ScrollView>
 
-    <EditText
-        android:id="@+id/etCommand"
+    <!-- Быстрые команды -->
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/term_quick_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <!-- Сопряжение -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="false"
+        android:textColor="@color/hh_text_secondary"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
+
+        <EditText
+            android:id="@+id/term_host"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginEnd="4dp"
+            android:hint="127.0.0.1"
+            android:padding="10dp"
+            android:textColor="@color/hh_text_primary"
+            android:textColorHint="@color/hh_text_secondary"
+            android:background="@drawable/input_bg"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/term_pair_port"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:hint="port"
+            android:padding="10dp"
+            android:textColor="@color/hh_text_primary"
+            android:textColorHint="@color/hh_text_secondary"
+            android:background="@drawable/input_bg"
+            android:inputType="number"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/term_pair_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:hint="code"
+            android:padding="10dp"
+            android:textColor="@color/hh_text_primary"
+            android:textColorHint="@color/hh_text_secondary"
+            android:background="@drawable/input_bg"
+            android:inputType="number"
+            android:maxLength="6"
+            android:maxLines="1" />
+
+        <Button
+            android:id="@+id/term_btn_pair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textColor="@color/hh_text_primary"
+            android:background="@drawable/btn_blue" />
+    </LinearLayout>
+
+    <!-- Подключение -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+
+        <EditText
+            android:id="@+id/term_connect_port"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:hint="port"
+            android:padding="10dp"
+            android:textColor="@color/hh_text_primary"
+            android:textColorHint="@color/hh_text_secondary"
+            android:background="@drawable/input_bg"
+            android:inputType="number"
+            android:maxLines="1" />
+
+        <Button
+            android:id="@+id/term_btn_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textColor="@color/hh_text_primary"
+            android:background="@drawable/btn_green" />
+    </LinearLayout>
+
+    <!-- Ввод команды -->
+    <EditText
+        android:id="@+id/term_command"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:hint="adb shell command"
         android:padding="12dp"
-        android:layout_marginTop="8dp"
         android:textColor="@color/hh_text_primary"
         android:textColorHint="@color/hh_text_secondary"
-        android:background="#CC111827"
-        android:inputType="text" />
+        android:background="@drawable/input_bg_command"
+        android:inputType="text"
+        android:maxLines="1" />
+
+    <!-- Кнопки отправки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+
+        <Button
+            android:id="@+id/term_btn_send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:textAllCaps="false"
+            android:textColor="@color/hh_text_primary"
+            android:background="@drawable/btn_blue" />
+
+        <Button
+            android:id="@+id/term_btn_disconnect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:textAllCaps="false"
+            android:textColor="@color/hh_text_primary"
+            android:background="@drawable/btn_red" />
+
+        <Button
+            android:id="@+id/term_btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textAllCaps="false"
+            android:textColor="@color/hh_text_primary"
+            android:background="@drawable/input_bg" />
+    </LinearLayout>
 
 </LinearLayout>

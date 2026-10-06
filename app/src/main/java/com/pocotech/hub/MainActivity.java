@@ -130,7 +130,7 @@ public class MainActivity extends Activity implements HubHost {
             dotp.topMargin = 4;
             dot.setLayoutParams(dotp);
             dot.setBackground(new android.graphics.drawable.GradientDrawable() {
-                { setCornerRadius(dp(getResources().getDisplayMetrics().density, 3)); setColor(accent); }
+                { setCornerRadius(dp(3)); setColor(accent); }
             });
             dot.setAlpha(0f);
             dot.setTag("dot");
@@ -985,8 +985,8 @@ public class MainActivity extends Activity implements HubHost {
                                : "Сохранить или восстановить настройки, избранное, профили, журнал и историю бенчмарков.")
                 .setPositiveButton(en ? "Export" : "Экспорт", new android.content.DialogInterface.OnClickListener() {
                     @Override public void onClick(android.content.DialogInterface d, int w) {
-                        String json = BackupManager.export(this);
-                        String path = BackupManager.writeToFile(this, json);
+                        String json = BackupManager.export(MainActivity.this);
+                        String path = BackupManager.writeToFile(MainActivity.this, json);
                         ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                         if (cm != null) cm.setPrimaryClip(ClipData.newPlainText("hyperhub", json));
                         toast((en ? "Exported to " : "Экспортировано в ") + (path != null ? path : "clipboard"));
@@ -1000,7 +1000,7 @@ public class MainActivity extends Activity implements HubHost {
                             CharSequence cs = cm.getPrimaryClip().getItemAt(0).coerceToText(MainActivity.this);
                             if (cs != null) json = cs.toString();
                         }
-                        boolean ok = BackupManager.importJson(this, json);
+                        boolean ok = BackupManager.importJson(MainActivity.this, json);
                         toast(ok ? (en ? "Backup restored" : "Бэкап восстановлен")
                                 : (en ? "Invalid JSON in clipboard" : "В буфере нет бэкапа"));
                         if (ok) recreate();

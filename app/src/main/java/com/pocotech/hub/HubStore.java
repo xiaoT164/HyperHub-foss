@@ -63,6 +63,9 @@ public class HubStore {
     }
     public int totalUses() { return sp.getInt(K_USES, 0); }
 
+    // ── Уровень пользователя (каждые 10 действий) ────────────────────────────
+    public int getLevel() { return totalUses() / 10 + 1; }
+
     // ── Профили ──────────────────────────────────────────────────────────────
     public void countProfileUse() { sp.edit().putInt(K_PROF_USE, sp.getInt(K_PROF_USE, 0) + 1).apply(); }
     public int profileUses() { return sp.getInt(K_PROF_USE, 0); }

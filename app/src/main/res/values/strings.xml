@@ -2,4 +2,10 @@
 <resources>
     <string name="app_name">HyperHub</string>
     <string name="app_subtitle">Утилиты HyperOS</string>
+    <string name="predict_os_version">HyperOS 4</string>
+    <string name="predict_badge_desc">Вердикт: получит ли устройство HyperOS 4</string>
+    <string name="predict_show_list">Полный список устройств</string>
+    <string name="predict_close_list">Закрыть список</string>
+    <string name="predict_sheet_title">Все устройства</string>
+    <string name="predict_disclaimer">Список ориентировочный, основан на официальной дорожной карте Xiaomi</string>
 </resources>
