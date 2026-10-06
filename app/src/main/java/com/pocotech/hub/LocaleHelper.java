@@ -13,7 +13,13 @@ public final class LocaleHelper {
     public static final String LANG_EN     = "en";
     public static final String LANG_RU     = "ru";
 
+    /** Применяет сохранённый язык к контексту приложения (безопасно вызывать только после onCreate). */
+    public static void apply(Context appCtx) {
+        wrap(appCtx);
+    }
+
     public static Context wrap(Context base) {
+        if (base == null) return null;
         AppSettings prefs = new AppSettings(base);
         String code = prefs.getLanguage();
         if (code == null || LANG_SYSTEM.equals(code)) return base;

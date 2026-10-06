@@ -35,7 +35,11 @@ public class HubStore {
     private final SharedPreferences sp;
 
     public HubStore(Context ctx) {
-        sp = ctx.getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        // Как и в AppSettings: application-контекст может быть ещё не готов,
+        // поэтому используем переданный контекст вместо null-ссылки.
+        Context appCtx = ctx.getApplicationContext();
+        if (appCtx == null) appCtx = ctx;
+        sp = appCtx.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 
     // ── Избранное ────────────────────────────────────────────────────────────

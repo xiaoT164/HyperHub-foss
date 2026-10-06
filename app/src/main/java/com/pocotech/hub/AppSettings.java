@@ -26,7 +26,13 @@ public class AppSettings {
     private final SharedPreferences sp;
 
     public AppSettings(Context ctx) {
-        sp = ctx.getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        // В attachBaseContext() у Application ещё нет application-контекста:
+        // getApplicationContext() возвращает null до конца attach(), поэтому
+        // обращаться к нему напрямую нельзя — падало с NullPointerException
+        // ещё до создания первого экрана. Берём сам ctx, если application-контекста нет.
+        Context appCtx = ctx.getApplicationContext();
+        if (appCtx == null) appCtx = ctx;
+        sp = appCtx.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 
     public int getAccentColor() { return sp.getInt(K_ACCENT, 0xFF4F46E5); }
