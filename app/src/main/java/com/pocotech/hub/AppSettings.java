@@ -15,6 +15,9 @@ public class AppSettings {
     public static final String K_LIQUID_GLASS    = "liquid_glass";
     public static final String K_ONBOARDING_DONE = "onboarding_done";
     public static final String K_LANGUAGE        = "language";
+    public static final String K_REMINDER        = "reminder_enabled";
+    public static final String K_REMINDER_HOUR   = "reminder_hour";
+    public static final String K_REMINDER_MIN    = "reminder_minute";
 
     public static final String LANG_SYSTEM = "system";
     public static final String LANG_EN     = "en";
@@ -46,4 +49,18 @@ public class AppSettings {
 
     public String getLanguage() { return sp.getString(K_LANGUAGE, LANG_SYSTEM); }
     public void setLanguage(String lang) { sp.edit().putString(K_LANGUAGE, lang).apply(); }
+
+    // ── Ежедневное напоминание ───────────────────────────────────────────────
+    public boolean isReminderEnabled() { return sp.getBoolean(K_REMINDER, false); }
+    public void setReminderEnabled(boolean v) { sp.edit().putBoolean(K_REMINDER, v).apply(); }
+
+    public int getReminderHour() { return sp.getInt(K_REMINDER_HOUR, 20); }
+    public int getReminderMinute() { return sp.getInt(K_REMINDER_MIN, 0); }
+
+    /** Задаёт время напоминания; часы/минуты автоматически приводятся к допустимому диапазону. */
+    public void setReminderTime(int hour, int minute) {
+        int h = Math.max(0, Math.min(23, hour));
+        int m = Math.max(0, Math.min(59, minute));
+        sp.edit().putInt(K_REMINDER_HOUR, h).putInt(K_REMINDER_MIN, m).apply();
+    }
 }

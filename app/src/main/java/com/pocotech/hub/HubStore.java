@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -64,7 +67,7 @@ public class HubStore {
     public int totalUses() { return sp.getInt(K_USES, 0); }
 
     // ── Уровень пользователя (каждые 10 действий) ────────────────────────────
-    public int getLevel() { return totalUses() / 10 + 1; }
+    public int getLevel() { return getXp() / 100 + 1; }
 
     // ── Профили ──────────────────────────────────────────────────────────────
     public void countProfileUse() { sp.edit().putInt(K_PROF_USE, sp.getInt(K_PROF_USE, 0) + 1).apply(); }
@@ -214,6 +217,152 @@ public class HubStore {
     }
 
     public void resetAll() { sp.edit().clear().apply(); }
+
+    // ── Статистика: XP, уровень, серия дней, цели (2.0 API) ───────────────────
+    private static final String K_XP      = "xp_bonus";
+    private static final String K_VISITED = "active_days";
+
+    /** Номер дня (дни с 1970-01-01 по локальному времени): 0 — сегодня, -1 — вчера и т. д. */
+    public static long dayNumber(int offset) {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_YEAR, offset);
+        long t = c.getTimeInMillis();
+        return Math.floorDiv(t + c.getTimeZone().getOffset(t), 86400000L);
+    }
+
+    /** Ключ дня для календаря активности (например «d20700»). */
+    public static String dayKey(int offset) { return "d" + dayNumber(offset); }
+
+    /** Активные дни в виде ключей, самые свежие — первыми. */
+    public List<String> activeDays() {
+        List<Long> nums = new ArrayList<>();
+        for (String v : readList(K_VISITED)) {
+            try { nums.add(Long.parseLong(v)); } catch (Exception ignored) {}
+        }
+        Collections.sort(nums, Collections.reverseOrder());
+        List<String> out = new ArrayList<>();
+        for (Long n : nums) out.add("d" + n);
+        return out;
+    }
+
+    private boolean hasDay(long n) {
+        String key = String.valueOf(n);
+        for (String v : readList(K_VISITED)) if (key.equals(v)) return true;
+        return false;
+    }
+
+    public boolean isTodayActive() { return hasDay(dayNumber(0)); }
+
+    /** Отмечает сегодняшний день как активный (вызывается при запуске инструмента). */
+    public void markTodayActive() {
+        long today = dayNumber(0);
+        if (hasDay(today)) return;
+        List<String> days = readList(K_VISITED);
+        days.add(String.valueOf(today));
+        while (days.size() > 366) days.remove(days.size() - 1);
+        writeList(K_VISITED, days);
+    }
+
+    public int totalDays() { return readList(K_VISITED).size(); }
+
+    /** Текущая серия: количество активных дней подряд. */
+    public int streak() {
+        int s = 0;
+        for (int i = 0; i < 3660; i++) {
+            if (hasDay(dayNumber(-i))) s++;
+            else if (i > 0) break;
+        }
+        return s;
+    }
+
+    /** Лучшая (самая длинная) серия за всё время. */
+    public int bestStreak() {
+        List<Long> nums = new ArrayList<>();
+        for (String v : readList(K_VISITED)) {
+            try { nums.add(Long.parseLong(v)); } catch (Exception ignored) {}
+        }
+        Collections.sort(nums);
+        int best = 0, run = 0;
+        Long prev = null;
+        for (Long n : nums) {
+            run = (prev != null && n.longValue() == prev.longValue() + 1L) ? run + 1 : 1;
+            if (run > best) best = run;
+            prev = n;
+        }
+        return best;
+    }
+
+    // ── XP и уровень ─────────────────────────────────────────────────────────
+    public int getXp() { return totalUses() * 10 + sp.getInt(K_XP, 0); }
+    public void addXp(int amount) {
+        if (amount <= 0) return;
+        sp.edit().putInt(K_XP, sp.getInt(K_XP, 0) + amount).apply();
+    }
+    /** Прогресс внутри текущего уровня, 0…100. */
+    public int getLevelProgress() { return getXp() % 100; }
+    public String getLevelTitle(boolean en) {
+        int lvl = getLevel();
+        if (lvl < 3)  return en ? "Beginner" : "Новичок";
+        if (lvl < 6)  return en ? "Advanced" : "Продвинутый";
+        if (lvl < 10) return en ? "Expert" : "Эксперт";
+        return en ? "Master" : "Мастер";
+    }
+    /** Сброс прогресса: XP и серия дней (инструменты, избранное и профили остаются). */
+    public void resetStats() { sp.edit().putInt(K_XP, 0).putString(K_VISITED, "[]").apply(); }
+
+    // ── Цели (12 достижений с прогрессом) ────────────────────────────────────
+    public static class Achievement {
+        public String title = "";
+        public String desc = "";
+        public int progress = 0;
+        public boolean done = false;
+    }
+
+    public List<Achievement> achievements(boolean en) {
+        int streak = streak();
+        int best   = bestStreak();
+        int days   = totalDays();
+        int uses   = totalUses();
+        int favs   = favoritesCount();
+        int profs  = profiles().size();
+        int bench  = benchHistory().size();
+
+        List<Achievement> out = new ArrayList<>();
+        out.add(goal(en ? "First launch" : "Первый запуск",
+                en ? "Open any tool once" : "Запустите любой инструмент", uses, 1));
+        out.add(goal(en ? "Toolkit user" : "Освоение утилит",
+                en ? "Launch 10 tools" : "Запустите 10 инструментов", uses, 10));
+        out.add(goal(en ? "35 tools" : "35 инструментов",
+                en ? "Launch 35 tools" : "Запустите 35 инструментов", uses, 35));
+        out.add(goal(en ? "Regular" : "Постоянство",
+                en ? "3-day streak" : "Серия из 3 дней", streak, 3));
+        out.add(goal(en ? "Disciplined" : "Дисциплина",
+                en ? "7-day streak" : "Серия из 7 дней", streak, 7));
+        out.add(goal(en ? "Unbreakable" : "Несгибаемый",
+                en ? "14-day streak" : "Серия из 14 дней", streak, 14));
+        out.add(goal(en ? "Marathon" : "Марафонец",
+                en ? "30 active days in total" : "30 активных дней всего", days, 30));
+        out.add(goal(en ? "Favorites" : "Избранное",
+                en ? "Add 5 favorites" : "Добавьте 5 избранных", favs, 5));
+        out.add(goal(en ? "Tuner" : "Настройщик",
+                en ? "Create a custom profile" : "Создайте свой профиль", profs, 1));
+        out.add(goal(en ? "Tester" : "Тестировщик",
+                en ? "Run 3 benchmarks" : "Выполните 3 бенчмарка", bench, 3));
+        out.add(goal(en ? "Bench master" : "Мастер тестов",
+                en ? "Run 10 benchmarks" : "Выполните 10 бенчмарков", bench, 10));
+        out.add(goal(en ? "Best streak " + best : "Рекорд серии " + best,
+                en ? "Longest streak of 5 days" : "Лучшая серия из 5 дней", best, 5));
+        return out;
+    }
+
+    private static Achievement goal(String title, String desc, int value, int target) {
+        Achievement a = new Achievement();
+        a.title = title;
+        a.desc = desc;
+        a.done = target > 0 && value >= target;
+        a.progress = target <= 0 ? 100 : Math.max(0, Math.min(100, (int) Math.round(value * 100.0 / target)));
+        return a;
+    }
 
     // ── Экспорт / импорт ─────────────────────────────────────────────────────
     public String exportJson() {

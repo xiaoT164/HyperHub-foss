@@ -72,23 +72,24 @@ public final class SettingsExtras {
             }
         });
 
-        // ── Сброс статистики ─────────────────────────────────────────────────
+        // ── Сброс прогресса ─────────────────────────────────────────────────
         click(act, root, R.id.card_reset_stats, new View.OnClickListener() {
             @Override public void onClick(View v) {
                 host.vibrate();
+                final boolean eng = LocaleHelper.isEnglish(act);
                 new AlertDialog.Builder(act)
-                        .setTitle(en ? "Reset progress?" : "Сбросить прогресс?")
-                        .setMessage(en
+                        .setTitle(eng ? "Reset progress?" : "Сбросить прогресс?")
+                        .setMessage(eng
                                 ? "XP, streak, achievements and benchmark history will be cleared. Tools and favorites stay."
                                 : "XP, серия дней, достижения и история бенчмарков будут очищены. Инструменты и избранное останутся.")
-                        .setPositiveButton(en ? "Reset" : "Сбросить", new android.content.DialogInterface.OnClickListener() {
+                        .setPositiveButton(eng ? "Reset" : "Сбросить", new android.content.DialogInterface.OnClickListener() {
                             @Override public void onClick(android.content.DialogInterface d, int w) {
                                 host.store().resetStats();
-                                host.toast(en ? "Stats reset" : "Статистика сброшена");
+                                host.toast(eng ? "Stats reset" : "Статистика сброшена");
                                 host.refreshCurrentScreen();
                             }
                         })
-                        .setNegativeButton(en ? "Cancel" : "Отмена", null)
+                        .setNegativeButton(eng ? "Cancel" : "Отмена", null)
                         .show();
             }
         });

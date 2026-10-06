@@ -270,6 +270,7 @@ public class MainActivity extends Activity implements HubHost {
     @Override public void runFeature(String key) {
         if (key == null) return;
         store.pushRecent(key);
+        store.markTodayActive();
         CommandCatalog.Cmd cmd = CommandCatalog.byKey(key);
         if (cmd != null) {
             store.logAction(key, LocaleHelper.isEnglish(this) ? cmd.titleEn : cmd.titleRu);
