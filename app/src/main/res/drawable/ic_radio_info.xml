@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Радио-информация: антенна с сигналом -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Мачта антенны -->
+    <path
+        android:strokeColor="#A0B8D0"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M12,18 L12,8" />
+
+    <!-- Горизонтальная перекладина -->
+    <path
+        android:strokeColor="#A0B8D0"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M8,10 L16,10" />
+
+    <!-- Левый луч -->
+    <path
+        android:strokeColor="#A0B8D0"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M8,10 L5,7" />
+
+    <!-- Правый луч -->
+    <path
+        android:strokeColor="#A0B8D0"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M16,10 L19,7" />
+
+    <!-- Основание -->
+    <path
+        android:strokeColor="#8090A8"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M9,20 L15,20" />
+    <path
+        android:strokeColor="#8090A8"
+        android:strokeWidth="1.6"
+        android:pathData="M10.5,18 L9,20 M13.5,18 L15,20" />
+
+    <!-- Волны сигнала -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#60CCFF"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M6,4.5 A7,7 0 0,1 18,4.5" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#40AADD"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round"
+        android:pathData="M8.5,6.5 A4,4 0 0,1 15.5,6.5" />
+</vector>

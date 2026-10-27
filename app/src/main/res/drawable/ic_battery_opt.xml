@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Оптимизация батареи: батарея + листик eco -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Корпус батареи -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#60DD88"
+        android:strokeWidth="1.8"
+        android:pathData="M4,8 L4,18 Q4,19 5,19 L17,19 Q18,19 18,18 L18,8 Q18,7 17,7 L5,7 Q4,7 4,8 Z" />
+
+    <!-- Плюсовой контакт -->
+    <path
+        android:fillColor="#60DD88"
+        android:pathData="M18.5,10 L20,10 Q20.5,10 20.5,10.8 L20.5,15.2 Q20.5,16 20,16 L18.5,16 Z" />
+
+    <!-- Уровень заряда (заливка ~65%) -->
+    <path
+        android:fillColor="#1A4A30"
+        android:pathData="M5.2,8.2 L16.8,8.2 L16.8,18.8 L5.2,18.8 Z" />
+    <path
+        android:fillColor="#30AA66"
+        android:pathData="M5.2,12 L16.8,12 L16.8,18.8 L5.2,18.8 Z" />
+
+    <!-- Листик (eco) по центру -->
+    <path
+        android:fillColor="#80EEA0"
+        android:pathData="M11,10 Q14,10 14,13 Q14,16 11,16 Q11,13 8,13 Q8,10 11,10 Z" />
+
+    <!-- Стебель листика -->
+    <path
+        android:strokeColor="#60CC80"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M11,16 L11,17.5" />
+</vector>

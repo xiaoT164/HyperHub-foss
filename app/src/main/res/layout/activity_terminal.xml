@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  activity_terminal.xml v1.3.0.0
+  Полностью переработан для комфортного ввода:
+  - ScrollView для карточек подключения (не перекрываются клавиатурой)
+  - Поле ввода команд + кнопки всегда видны над клавиатурой
+  - Быстрые команды (chips) над полем ввода
+  - Цветной вывод
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#080C14">
+
+    <!-- AuroraBackground как отдельный фоновый слой -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0"
+        android:layout_gravity="top">
+        <com.pocotech.hub.AuroraBackground
+            android:id="@+id/bg_anim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <!-- ════ ШАПКА ════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="8dp"
+        android:background="#CC080C14">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Терминал"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:letterSpacing="-0.02" />
+
+            <TextView
+                android:id="@+id/term_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Не подключено"
+                android:textColor="#80A0C8FF"
+                android:textSize="11sp"
+                android:layout_marginTop="1dp" />
+        </LinearLayout>
+
+        <!-- Кнопки шапки -->
+        <TextView
+            android:id="@+id/term_btn_dev_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Dev"
+            android:textColor="#8090D0"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/card_background"
+            android:layout_marginRight="8dp" />
+
+        <TextView
+            android:id="@+id/term_btn_help"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="?"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/bg_help_circle" />
+    </LinearLayout>
+
+    <!-- ════ КАРТОЧКИ ПОДКЛЮЧЕНИЯ (прокручиваемые) ════ -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp">
+
+            <!-- ════ КАРТОЧКА: СОПРЯЖЕНИЕ ════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card_grad_network">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="14dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ADB"
+                        android:textSize="15sp"
+                        android:layout_marginRight="8dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="СОПРЯЖЕНИЕ (PAIRING)"
+                        android:textColor="#8090D0"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Шаг 1"
+                        android:textColor="#404858"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <!-- IP-адрес -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IP-адрес"
+                    android:textColor="#607090"
+                    android:textSize="10sp"
+                    android:layout_marginBottom="4dp" />
+                <EditText
+                    android:id="@+id/term_host"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="127.0.0.1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:background="@drawable/input_bg"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:inputType="textNoSuggestions"
+                    android:imeOptions="actionNext"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Порт сопряжения + Код -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="14dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginRight="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Порт сопряжения"
+                            android:textColor="#607090"
+                            android:textSize="10sp"
+                            android:layout_marginBottom="4dp" />
+                        <EditText
+                            android:id="@+id/term_pair_port"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:background="@drawable/input_bg"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:inputType="number"
+                            android:hint="37xxx"
+                            android:textColorHint="#304050"
+                            android:imeOptions="actionNext" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Код сопряжения"
+                            android:textColor="#607090"
+                            android:textSize="10sp"
+                            android:layout_marginBottom="4dp" />
+                        <EditText
+                            android:id="@+id/term_pair_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:textColor="#FFCC00"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:background="@drawable/input_bg_accent"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:inputType="number"
+                            android:hint="123456"
+                            android:textColorHint="#304050"
+                            android:imeOptions="actionDone"
+                            android:maxLength="6" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/term_btn_pair"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="Сопряжение"
+                    android:textColor="#FFFFFF"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    android:background="@drawable/btn_blue" />
+            </LinearLayout>
+
+            <!-- ════ КАРТОЧКА: ПОДКЛЮЧЕНИЕ ════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card_grad_cpu">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="14dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TCP"
+                        android:textSize="15sp"
+                        android:layout_marginRight="8dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ПОДКЛЮЧЕНИЕ"
+                        android:textColor="#8090D0"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Шаг 2"
+                        android:textColor="#404858"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginRight="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Порт подключения"
+                            android:textColor="#607090"
+                            android:textSize="10sp"
+                            android:layout_marginBottom="4dp" />
+                        <EditText
+                            android:id="@+id/term_connect_port"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:background="@drawable/input_bg"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:inputType="number"
+                            android:hint="40xxx"
+                            android:textColorHint="#304050"
+                            android:imeOptions="actionDone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="bottom">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="18dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/term_btn_connect"
+                                android:layout_width="wrap_content"
+                                android:layout_height="44dp"
+                                android:text="Подключить"
+                                android:textColor="#FFFFFF"
+                                android:textAllCaps="false"
+                                android:textSize="13sp"
+                                android:background="@drawable/btn_green"
+                                android:layout_marginRight="6dp" />
+
+                            <Button
+                                android:id="@+id/term_btn_disconnect"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:text="X"
+                                android:textColor="#FFFFFF"
+                                android:textAllCaps="false"
+                                android:textSize="16sp"
+                                android:background="@drawable/btn_red"
+                                android:enabled="false" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ════ КАРТОЧКА: ВЫВОД SHELL ════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/card_grad_storage">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shell"
+                        android:textSize="14sp"
+                        android:layout_marginRight="6dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="SHELL ВЫВОД"
+                        android:textColor="#8090D0"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12" />
+                    <Button
+                        android:id="@+id/term_btn_clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:text="Очистить"
+                        android:textColor="#C0C8E0"
+                        android:textAllCaps="false"
+                        android:textSize="10sp"
+                        android:background="@drawable/card_background"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp" />
+                </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/term_output_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#0A0E16"
+                    android:padding="10dp"
+                    android:scrollbars="vertical">
+
+                    <TextView
+                        android:id="@+id/term_output"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#7CFFB2"
+                        android:textSize="12sp"
+                        android:fontFamily="monospace"
+                        android:lineSpacingExtra="2dp"
+                        android:text="" />
+                </ScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ════ НИЖНЯЯ ЗОНА ВВОДА (фиксирована, выше клавиатуры) ════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#CC0D1220"
+        android:elevation="8dp">
+
+        <!-- Быстрые команды -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp">
+
+            <LinearLayout
+                android:id="@+id/term_quick_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical" />
+        </HorizontalScrollView>
+
+        <!-- Поле ввода команды + кнопка отправки -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="12dp">
+
+            <EditText
+                android:id="@+id/term_command"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginRight="8dp"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:fontFamily="monospace"
+                android:background="@drawable/input_bg_command"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:hint="введите команду..."
+                android:textColorHint="#405060"
+                android:imeOptions="actionSend|flagNoExtractUi"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:singleLine="true"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/term_btn_send"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                android:text="▶"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                android:background="@drawable/btn_blue"
+                android:enabled="false" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

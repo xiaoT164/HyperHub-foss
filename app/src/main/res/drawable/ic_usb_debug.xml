@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- USB-отладка: USB-разъём + жук (bug) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- USB штекер корпус -->
+    <path
+        android:fillColor="#2A3A5A"
+        android:strokeColor="#5A7AAA"
+        android:strokeWidth="1.6"
+        android:pathData="M9,3 L15,3 L15,6 L9,6 Z" />
+
+    <!-- USB контакты внутри разъёма -->
+    <path android:fillColor="#8090B0" android:pathData="M10.5,4 L11.5,4 L11.5,5 L10.5,5 Z" />
+    <path android:fillColor="#8090B0" android:pathData="M12.5,4 L13.5,4 L13.5,5 L12.5,5 Z" />
+
+    <!-- Кабель -->
+    <path
+        android:strokeColor="#5A7AAA"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M12,6 L12,10" />
+
+    <!-- Корпус USB-A разъёма -->
+    <path
+        android:fillColor="#1A2A42"
+        android:strokeColor="#4A6A9A"
+        android:strokeWidth="1.6"
+        android:pathData="M8,10 L16,10 L16,15 L8,15 Z" />
+    <!-- Паз USB-A -->
+    <path android:fillColor="#0A1428" android:pathData="M9.5,11.5 L14.5,11.5 L14.5,13.5 L9.5,13.5 Z" />
+
+    <!-- Жук (bug) — справа снизу -->
+    <!-- Тело -->
+    <path android:fillColor="#CC8020"
+        android:pathData="M18,16 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
+    <!-- Голова -->
+    <path android:fillColor="#EEA030"
+        android:pathData="M18,13.2 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0" />
+    <!-- Усики -->
+    <path android:strokeColor="#CC8020" android:strokeWidth="1" android:strokeLineCap="round"
+        android:pathData="M17,12.4 L16,11" />
+    <path android:strokeColor="#CC8020" android:strokeWidth="1" android:strokeLineCap="round"
+        android:pathData="M19,12.4 L20,11" />
+    <!-- Ножки -->
+    <path android:strokeColor="#AA6010" android:strokeWidth="1" android:strokeLineCap="round"
+        android:pathData="M15.5,15.5 L14,15 M15.5,16.5 L14,17 M20.5,15.5 L22,15 M20.5,16.5 L22,17" />
+</vector>

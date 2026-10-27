@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Сторонние шрифты: буква T + кисть -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Буква T -->
+    <path
+        android:strokeColor="#C0A0FF"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M4,5 L14,5 M9,5 L9,17" />
+
+    <!-- Засечки на T -->
+    <path android:strokeColor="#9060EE" android:strokeWidth="1.6" android:strokeLineCap="round"
+        android:pathData="M7,17 L11,17" />
+
+    <!-- Кисть (снизу справа) -->
+    <!-- Ручка кисти -->
+    <path android:strokeColor="#D0A060" android:strokeWidth="2" android:strokeLineCap="round"
+        android:pathData="M15,13 L20,8" />
+
+    <!-- Металлическая обойма -->
+    <path android:strokeColor="#A08050" android:strokeWidth="3" android:strokeLineCap="round"
+        android:pathData="M16.5,14.5 L18,13" />
+
+    <!-- Ворс кисти -->
+    <path android:fillColor="#6060CC"
+        android:pathData="M13.5,14.5 Q15,16.5 14,18.5 Q13,20 12,20 Q11.5,18 13,17 Q12,16 11.5,15 Z" />
+
+    <!-- Блик на ворсе -->
+    <path android:fillColor="#9090EE"
+        android:pathData="M13,15 Q14,16.5 13.5,17.5 Q13,16 12.5,15.5 Z" />
+</vector>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base glass fill -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#1AFFFFFF" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+
+    <!-- Subtle gradient overlay (top highlight) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#22FFFFFF"
+                android:endColor="#05FFFFFF" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+
+    <!-- Top shine strip -->
+    <item android:bottom="14dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#30FFFFFF"
+                android:endColor="#00FFFFFF" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+
+    <!-- Glowing border -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="1dp"
+                android:color="#35FFFFFF" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+
+    <!-- Inner bright top border line -->
+    <item android:bottom="16dp" android:left="1dp" android:right="1dp" android:top="1dp">
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="1dp"
+                android:color="#20FFFFFF" />
+            <corners android:radius="17dp" />
+        </shape>
+    </item>
+
+</layer-list>

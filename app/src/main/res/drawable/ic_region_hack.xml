@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Фишки смены региона: глобус + ключ -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Глобус (окружность) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#5090C0"
+        android:strokeWidth="1.8"
+        android:pathData="M3,12 a9,9 0 1,0 18,0 a9,9 0 1,0 -18,0" />
+
+    <!-- Вертикальная ось -->
+    <path android:strokeColor="#305878" android:strokeWidth="1.2"
+        android:pathData="M12,3 L12,21" />
+
+    <!-- Горизонтальные параллели -->
+    <path android:fillColor="#00000000" android:strokeColor="#305878" android:strokeWidth="1.2"
+        android:pathData="M3.8,8.5 Q12,6.5 20.2,8.5" />
+    <path android:fillColor="#00000000" android:strokeColor="#305878" android:strokeWidth="1.2"
+        android:pathData="M3,12 L21,12" />
+    <path android:fillColor="#00000000" android:strokeColor="#305878" android:strokeWidth="1.2"
+        android:pathData="M3.8,15.5 Q12,17.5 20.2,15.5" />
+
+    <!-- Ключ (поверх глобуса, правый угол) -->
+    <!-- Кольцо ключа -->
+    <path android:fillColor="#FFCC00"
+        android:pathData="M17,3 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+    <path android:fillColor="#0A1020"
+        android:pathData="M17,3 m-1.6,0 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0" />
+
+    <!-- Стержень ключа -->
+    <path android:strokeColor="#FFCC00" android:strokeWidth="2" android:strokeLineCap="round"
+        android:pathData="M17,6 L17,10" />
+
+    <!-- Зубья ключа -->
+    <path android:strokeColor="#FFCC00" android:strokeWidth="1.6" android:strokeLineCap="round"
+        android:pathData="M17,8 L19,8" />
+    <path android:strokeColor="#FFCC00" android:strokeWidth="1.6" android:strokeLineCap="round"
+        android:pathData="M17,10 L19,10" />
+</vector>
